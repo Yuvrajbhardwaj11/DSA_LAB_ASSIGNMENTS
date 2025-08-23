@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 void transpose(int A[][3], int T[][3]) {
     int m = A[0][0], n = A[0][1], nz = A[0][2];
     T[0][0] = n;
@@ -58,6 +59,14 @@ void add(int A[][3], int B[][3], int C[][3]) {
         j++; k++;
     }
     C[0][2] = k - 1;
+}
+void sortTriplets(int A[][3]) {
+    int n = A[0][2];
+    for(int i=1;i<=n;i++)
+        for(int j=i+1;j<=n;j++)
+            if(A[i][0]>A[j][0] || (A[i][0]==A[j][0] && A[i][1]>A[j][1])){
+                swap(A[i][0],A[j][0]); swap(A[i][1],A[j][1]); swap(A[i][2],A[j][2]);
+            }
 }
 
 void multiply(int A[][3], int B[][3], int C[][3]) {

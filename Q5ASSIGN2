@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    // Diagonal Matrix
+    int diag[n];
+    for(int i=0;i<n;i++) {
+        cin >> diag[i];
+    }
+    for(int i=0;i<n;i++) cout << diag[i] << " ";
+    cout << endl;
+
+    // Tri-diagonal Matrix
+    int tri[3*n-2];
+    for(int i=0;i<3*n-2;i++) cin >> tri[i];
+    for(int i=0;i<3*n-2;i++) cout << tri[i] << " ";
+    cout << endl;
+
+    // Lower Triangular Matrix
+    int lower[n*(n+1)/2];
+    int k=0;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<=i;j++) {
+            cin >> lower[k++];
+        }
+    for(int i=0;i<k;i++) cout << lower[i] << " ";
+    cout << endl;
+
+    // Upper Triangular Matrix
+    int upper[n*(n+1)/2];
+    k=0;
+    for(int i=0;i<n;i++)
+        for(int j=i;j<n;j++) {
+            cin >> upper[k++];
+        }
+    for(int i=0;i<k;i++) cout << upper[i] << " ";
+    cout << endl;
+
+    // Symmetric Matrix
+    int sym[n*(n+1)/2];
+    k=0;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<=i;j++) {
+            cin >> sym[k++];
+        }
+    for(int i=0;i<k;i++) cout << sym[i] << " ";
+    cout << endl;
+}

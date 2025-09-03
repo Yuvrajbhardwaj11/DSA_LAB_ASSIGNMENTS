@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 
-class Queue {
+class LinearQueue {
     int front, rear, size;
     int* arr;
 public:
-    Queue(int n) {
+    LinearQueue(int n) {
         size = n;
         arr = new int[size];
         front = -1;
@@ -15,15 +15,17 @@ public:
         return front == -1;
     }
     bool isFull() {
-        return (rear + 1) % size == front;
+        return rear == size - 1;
     }
     void enqueue(int x) {
         if (isFull()) {
             cout << "Queue is Full\n";
             return;
         }
-        if (isEmpty()) front = 0;
-        rear = (rear + 1) % size;
+        if (isEmpty()) {
+            front = 0;
+        }
+        rear++;
         arr[rear] = x;
         cout << x << " enqueued\n";
     }
@@ -33,12 +35,18 @@ public:
             return;
         }
         cout << arr[front] << " dequeued\n";
-        if (front == rear) front = rear = -1;
-        else front = (front + 1) % size;
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front = front + 1;  // No modulo in linear queue
+        }
     }
     void peek() {
-        if (isEmpty()) cout << "Queue is Empty\n";
-        else cout << "Front element is " << arr[front] << "\n";
+        if (isEmpty()) {
+            cout << "Queue is Empty\n";
+        } else {
+            cout << "Front element is " << arr[front] << "\n";
+        }
     }
     void display() {
         if (isEmpty()) {
@@ -46,21 +54,18 @@ public:
             return;
         }
         cout << "Queue: ";
-        int i = front;
-        while (true) {
+        for (int i = front; i <= rear; i++) {
             cout << arr[i] << " ";
-            if (i == rear) break;
-            i++;
         }
-        
+        cout << "\n";
     }
 };
 
 int main() {
     int n;
-    cout << "Enter size of queue: ";
+    cout << "Enter size of Linear Queue: ";
     cin >> n;
-    Queue q(n);
+    LinearQueue q(n);
     while (true) {
         cout << "\n1.Enqueue\n2.Dequeue\n3.Peek\n4.Display\n5.IsEmpty\n6.IsFull\n7.Exit\n";
         int ch;
